@@ -1,15 +1,8 @@
 #!/usr/bin/env bash
-
-# לצאת אם יש שגיאה
 set -e
 
-echo "=== Updating package list (apt update) ==="
-sudo apt update -y
+apt update -y
+apt install -y nginx
 
-echo "=== Installing nginx ==="
-sudo apt install -y nginx
-
-echo "=== Checking nginx version ==="
 nginx -v
-
-echo "=== nginx installed successfully ==="
+echo "nginx installed successfully"

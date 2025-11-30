@@ -9,10 +9,7 @@ logging.basicConfig(
 level=logging.INFO,
 format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
 handlers=[
-        logging.FileHandler("src/logs/infra.log") ]
-
-#filename = "src/logs/infra.log",
-#filemode = "a",
+        logging.FileHandler("src/logs/infra.log")]
 )
 
 #move the fancion to a class
