@@ -1,18 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-if command -v nginx >/dev/null 2>&1; then
-    echo "nginx already installed"
-    exit 0
+# Check if nginx is installed
+if ! command -v nginx &> /dev/null; then
 
+    echo "nginx is not installed. Installing..."
 
+    sudo apt update && sudo apt install -y nginx
+
+else
+
+    echo "nginx is already installed."
 fi
-
-echo "nginx not found, installing."
-
-sudo yum update -y
-sudo yum install nginx -y
-
-sudo systemctl enable nginx
-sudo systemctl start nginx
-
-echo "nginx installed successfully"

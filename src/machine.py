@@ -29,15 +29,15 @@ class Machine(BaseModel):
 
     @field_validator("cpu")
     def validate_cpu(cls, v):
-        if v <= 0 and v > 64:
-            raise ValueError("cpu must be a positive number")
+        if v <= 0 or v > 64:
+            raise ValueError("cpu must be between 1 and 64")
         return v
 
 
     @field_validator("ram")
     def validate_ram(cls, v):
-        if v <= 0 and v > 32:
-            raise ValueError("ram must be a positive number")
+        if v <= 0 or v > 32:
+            raise ValueError("ram must be between 1 and 32 (GB)")
         return v
 
 

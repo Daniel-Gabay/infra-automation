@@ -12,6 +12,12 @@ handlers=[
         logging.FileHandler("src/logs/infra.log")]
 )
 
+try:
+    installer.install_nginx()
+    installer.install_pydantic()
+except Exception as e:
+    logging.exception(f"Installer failed: {e}")
+
 #move the fancion to a class
 def save_machine(machine):
     file_path="src/configs/instances.json"
@@ -50,7 +56,7 @@ def read_user():
     #cpu must be a positive number
         cpu = input("CPU cores (number): ").strip()
         while not cpu.isdigit() or int (cpu) <= 0 or int(cpu) > 64:
-            print("CPU must be a positive number. ")
+            print("CPU must be a number between 1 and 64. ")
             logging.warning(f"user entered a invalid {cpu} number ")
             cpu = input("CPU cores (number) ").strip()
         cpu = int (cpu)
@@ -59,7 +65,7 @@ def read_user():
     #RAM must be a positive number
         ram = (input("RAM size (GB): ")).strip()
         while not ram.isdigit() or int (ram) <= 0 or int(ram) > 32:
-            print("RAM must be a positive number. ")
+            print("RAM must be a number between 1 and 32. ")
             logging.warning(f"user entered a invalid {ram} number")
             ram = input("RAM size (GB): ").strip()
         ram = int (ram)
@@ -75,8 +81,6 @@ def read_user():
 logging.info("program started")
 print("starting the program . . .")
 
-installer.install_nginx()
-installer.install_pydantic()
 
 #read from user and save it
 machine = read_user()

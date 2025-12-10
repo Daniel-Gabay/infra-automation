@@ -1,15 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# בדיקה אם pydantic כבר מותקן בפייתון
-python -c "import pydantic" >/dev/null 2>&1
-if [ $? -eq 0 ]; then
-    echo "pydantic already installed, skipping."
-    exit 0
+# Check if pydantic is installed
+if ! pip show pydantic &> /dev/null; then
+
+    echo "pydantic is not installed. Installing now..."
+
+    pip install pydantic
+
+else
+    echo "pydantic is already installed."
 fi
-
-echo "pydantic not found, installing..."
-
-pip install pydantic
-# או pip3 install pydantic אם זה מה שאתה משתמש בו
-
-echo "pydantic installed successfully"
